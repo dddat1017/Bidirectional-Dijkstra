@@ -5,9 +5,8 @@
 */
 
 #include <assert.h>
-#include <iostream>
 #include <string>
-#include "ExtrinsicMinPQ.hpp"
+#include "ExtrinsicMinPQ.h"
 
 int main(int argc, char* argv[]) {
   ExtrinsicMinPQ<std::string> testPQ;

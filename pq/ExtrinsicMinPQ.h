@@ -39,7 +39,7 @@ template <typename T> class ExtrinsicMinPQ {
    * Adds an item with the given priority value.
    * Returns true on success, false if item is already present in the PQ.
   */
-  bool add(T item, double priority);
+  bool add(const T item, const double priority);
 
   /*
    * Returns true if the PQ contains the given item; false otherwise.
@@ -66,7 +66,7 @@ template <typename T> class ExtrinsicMinPQ {
    * Returns true on success, false if item is not present
    * in the PQ.
   */
-  bool changePriority(const T& item, double priority);
+  bool changePriority(const T& item, const double priority);
 
   /*
    * Returns the number of items in the PQ.
@@ -99,7 +99,7 @@ template <typename T> class ExtrinsicMinPQ {
   /*
    * Swaps the items at index 'a' and 'b' in the PQ.
   */
-  void swapItems(int a, int b);
+  void swapItems(const int a, const int b);
 
   /*
    * Swims an item to its correct position after adding
@@ -110,7 +110,7 @@ template <typename T> class ExtrinsicMinPQ {
    * 
    * - priority: The priority of the item.
   */
-  void swim(int currentIndex, double priority);
+  void swim(int currentIndex, const double priority);
 
   /*
    * Sinks an item to its correct position after removing
@@ -121,7 +121,7 @@ template <typename T> class ExtrinsicMinPQ {
    * 
    * - priority: The priority of the item.
   */
-  void sink(int currentIndex, double priority);
+  void sink(int currentIndex, const double priority);
 };
 
 #include "ExtrinsicMinPQ.cpp"

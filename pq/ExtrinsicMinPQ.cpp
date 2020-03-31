@@ -18,7 +18,7 @@ static int rightIndex(int parentIndex, int size);
 static int parentIndex(int childIndex);
 
 template <typename T>
-bool ExtrinsicMinPQ<T>::add(T item, double priority) {
+bool ExtrinsicMinPQ<T>::add(const T item, const double priority) {
   PriorityNode pn;
 
   // Easy add when PQ is empty.
@@ -94,7 +94,7 @@ T* ExtrinsicMinPQ<T>::removeSmallest() {
 }
 
 template <typename T>
-bool ExtrinsicMinPQ<T>::changePriority(const T& item, double priority) {
+bool ExtrinsicMinPQ<T>::changePriority(const T& item, const double priority) {
   // Return false if the item is not in the PQ.
   if (storage.find(item) == storage.end())
     return false;
@@ -112,7 +112,7 @@ bool ExtrinsicMinPQ<T>::changePriority(const T& item, double priority) {
 }
 
 template <typename T>
-void ExtrinsicMinPQ<T>::swapItems(int a, int b) {
+void ExtrinsicMinPQ<T>::swapItems(const int a, const int b) {
   // Release() and Reset() the two pointers to transfer ownership.
   T* aPtr = pq[a].release();
   T* bPtr = pq[b].release();
@@ -125,7 +125,7 @@ void ExtrinsicMinPQ<T>::swapItems(int a, int b) {
 }
 
 template <typename T>
-void ExtrinsicMinPQ<T>::swim(int currentIndex, double priority) {
+void ExtrinsicMinPQ<T>::swim(int currentIndex, const double priority) {
   int pi = parentIndex(currentIndex);
   T parent = *(pq[pi]);  // Extract the parent item.
 
@@ -141,7 +141,7 @@ void ExtrinsicMinPQ<T>::swim(int currentIndex, double priority) {
 }
 
 template <typename T>
-void ExtrinsicMinPQ<T>::sink(int currentIndex, double priority) {
+void ExtrinsicMinPQ<T>::sink(int currentIndex, const double priority) {
   // Assume left child is item with the smaller priority than the
   // right child.
   int childIndex = leftIndex(currentIndex, size());
@@ -172,21 +172,21 @@ void ExtrinsicMinPQ<T>::sink(int currentIndex, double priority) {
   }
 }
 
-static int leftIndex(int parentIndex, int size) {
+static int leftIndex(const int parentIndex, const int size) {
   int index = (parentIndex * 2) + 1;
   if (index < size)
     return index;
   return -1;
 }
 
-static int rightIndex(int parentIndex, int size) {
+static int rightIndex(const int parentIndex, const int size) {
   int index = (parentIndex * 2) + 2;
   if (index < size)
     return index;
   return -1;
 }
 
-static int parentIndex(int childIndex) {
+static int parentIndex(const int childIndex) {
   int index = (childIndex - 1) / 2;
   if (index >= 0)
     return index;
