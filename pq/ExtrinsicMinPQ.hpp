@@ -56,7 +56,7 @@ template <typename T> class ExtrinsicMinPQ {
   /*
    * Removes and returns (the pointer to) the item with the
    * smallest priority. Returns 'nullptr' if the PQ is empty.
-   * Caller receives ownership of the item and must 'free'
+   * Caller receives ownership of the item and must 'delete'
    * the pointer once done with it.
   */
   T* removeSmallest();
