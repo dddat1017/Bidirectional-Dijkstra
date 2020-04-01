@@ -24,7 +24,7 @@ typedef struct {
 /*
  * Priority queue where objects have a priority that is provided extrinsically,
  * i.e., priorities are supplied as an argument during insertion and can be
- * changed using the changePriority method. Cannot contain duplicate items.
+ * changed using the changePriority() function. Cannot contain duplicate items.
  * Items' type must support less than operator (<).
 */
 template <typename T> class ExtrinsicMinPQ {
