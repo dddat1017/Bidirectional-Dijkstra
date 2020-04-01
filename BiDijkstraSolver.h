@@ -25,7 +25,8 @@ template <typename Vertex> class BiDijkstraSolver {
    * Dijkstra's Algorithm, computing everything necessary for all other methods
    * to return their results in constant time. The timeout is given in seconds.
   */
-  BiDijkstraSolver(Graph<Vertex> input, Vertex start, Vertex end, double timeout);
+  BiDijkstraSolver(Graph<Vertex> input, Vertex start,
+                          Vertex end, double timeout);
 
   /*
    * Dtor.

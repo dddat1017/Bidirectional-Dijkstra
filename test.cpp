@@ -4,9 +4,9 @@
  * Copyright 2020 Dat Do
 */
 
+#include <assert.h>
 #include <chrono>  // For high_resolution_clock and duration
 #include <iostream>
-#include <assert.h>
 #include "WeightedEdge.h"
 
 int main(int argc, char* argv[]) {
