@@ -8,14 +8,14 @@
  * Helper functions to calculate the index position of an
  * item's child (left or right) in the underlying vector.
 */
-static int leftIndex(int parentIndex, int size);
-static int rightIndex(int parentIndex, int size);
+static int leftIndex(const int& parentIndex, const int& size);
+static int rightIndex(const int& parentIndex, const int& size);
 
 /*
  * Helper function to calculate the index position of an
  * item's parent in the underlying vector.
 */
-static int parentIndex(int childIndex);
+static int parentIndex(const int& childIndex);
 
 template <typename T>
 bool ExtrinsicMinPQ<T>::add(const T item, const double priority) {
@@ -125,7 +125,7 @@ void ExtrinsicMinPQ<T>::swapItems(const int a, const int b) {
 }
 
 template <typename T>
-void ExtrinsicMinPQ<T>::swim(int currentIndex, const double priority) {
+void ExtrinsicMinPQ<T>::swim(int currentIndex, const double& priority) {
   int pi = parentIndex(currentIndex);
   T parent = *(pq[pi]);  // Extract the parent item.
 
@@ -141,7 +141,7 @@ void ExtrinsicMinPQ<T>::swim(int currentIndex, const double priority) {
 }
 
 template <typename T>
-void ExtrinsicMinPQ<T>::sink(int currentIndex, const double priority) {
+void ExtrinsicMinPQ<T>::sink(int currentIndex, const double& priority) {
   // Assume left child is item with the smaller priority than the
   // right child.
   int childIndex = leftIndex(currentIndex, size());
@@ -172,21 +172,21 @@ void ExtrinsicMinPQ<T>::sink(int currentIndex, const double priority) {
   }
 }
 
-static int leftIndex(const int parentIndex, const int size) {
+static int leftIndex(const int& parentIndex, const int& size) {
   int index = (parentIndex * 2) + 1;
   if (index < size)
     return index;
   return -1;
 }
 
-static int rightIndex(const int parentIndex, const int size) {
+static int rightIndex(const int& parentIndex, const int& size) {
   int index = (parentIndex * 2) + 2;
   if (index < size)
     return index;
   return -1;
 }
 
-static int parentIndex(const int childIndex) {
+static int parentIndex(const int& childIndex) {
   int index = (childIndex - 1) / 2;
   if (index >= 0)
     return index;

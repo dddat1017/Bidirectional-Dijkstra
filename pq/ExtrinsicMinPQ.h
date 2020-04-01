@@ -110,7 +110,7 @@ template <typename T> class ExtrinsicMinPQ {
    * 
    * - priority: The priority of the item.
   */
-  void swim(int currentIndex, const double priority);
+  void swim(int currentIndex, const double& priority);
 
   /*
    * Sinks an item to its correct position after removing
@@ -121,7 +121,7 @@ template <typename T> class ExtrinsicMinPQ {
    * 
    * - priority: The priority of the item.
   */
-  void sink(int currentIndex, const double priority);
+  void sink(int currentIndex, const double& priority);
 };
 
 #include "ExtrinsicMinPQ.cpp"
