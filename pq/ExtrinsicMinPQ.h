@@ -25,7 +25,7 @@ typedef struct {
  * Priority queue where objects have a priority that is provided extrinsically,
  * i.e., priorities are supplied as an argument during insertion and can be
  * changed using the changePriority() function. Cannot contain duplicate items.
- * Items' type must support less-than operator (<).
+ * Items' type must support less than operator (<).
 */
 template <typename T> class ExtrinsicMinPQ {
  public:
@@ -93,8 +93,8 @@ template <typename T> class ExtrinsicMinPQ {
    * An auxiliary map to store information of each item.
    * Each key is the item itself, which maps to a
    * PriorityNode struct. Items' type must support less
-   * than operator (<) since maps are implemented as
-   * search trees.
+   * than operator (<) since maps are typically implemented as
+   * binary search trees.
   */
   std::map<T, PriorityNode> storage;
 

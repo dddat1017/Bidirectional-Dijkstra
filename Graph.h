@@ -15,8 +15,9 @@ using std::vector;
 using std::unique_ptr;
 
 /*
- * Represents a graph of vertices. Cannot contain duplicate vertices nor negative
- * edge weights.
+ * Represents a graph of vertices.
+ * Cannot contain duplicate vertices nor negative edge weights.
+ * Vertices' type must support less than operator (<).
 */
 template <typename Vertex> class Graph {
  public:
