@@ -17,7 +17,8 @@ using std::unique_ptr;
 /*
  * Represents a graph of vertices.
  * Cannot contain duplicate vertices nor negative edge weights.
- * Vertices' type must support less than operator (<).
+ * Vertices' type must support less-than operator (<) and
+ * equal-to operator (==).
 */
 template <typename Vertex> class Graph {
  public:
@@ -26,8 +27,8 @@ template <typename Vertex> class Graph {
   * Caller does not receive ownership of the vector (i.e. cannot change the vector
   * in any way); only access to the elements are provided.
   */
-  virtual const vector<unique_ptr<WeightedEdge<Vertex>>>&outgoingNeighbors(
-                                                      const Vertex& v) = 0;
+  virtual const vector<unique_ptr<WeightedEdge<Vertex>>>& outgoingNeighbors(
+                                                const Vertex& v) const = 0;
 
   /*
   * Returns the vector of (unique_ptr's to) incoming edges to the given vertex.
@@ -35,7 +36,7 @@ template <typename Vertex> class Graph {
   * in any way); only access to the elements are provided.
   */
   virtual const vector<unique_ptr<WeightedEdge<Vertex>>>& incomingNeighbors(
-                                                        const Vertex& v) = 0;
+                                                const Vertex& v) const = 0;
 };
 
 #endif  // GRAPH_H_

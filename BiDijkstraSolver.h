@@ -10,6 +10,7 @@
 #include <map>
 #include <vector>
 #include "Graph.h"
+#include "pq/ExtrinsicMinPQ.h"
 
 /*
  * Class for the Bidirectional Dijkstra's Algorithm solver.
@@ -25,8 +26,8 @@ template <typename Vertex> class BiDijkstraSolver {
    * Dijkstra's Algorithm, computing everything necessary for all other methods
    * to return their results in constant time. The timeout is given in seconds.
   */
-  BiDijkstraSolver(Graph<Vertex> input, Vertex start,
-                          Vertex end, double timeout);
+  BiDijkstraSolver(const Graph<Vertex>& input, Vertex start,
+                        Vertex end, const double& timeout);
 
   /*
    * Dtor.
@@ -36,25 +37,26 @@ template <typename Vertex> class BiDijkstraSolver {
   /*
    * Returns 1 for 'solved', 0 for 'unsolvable', -1 for 'timed-out'.
   */
-  int outcome() { return outcome; }
+  int outcome() { return outcome_; }
 
   /*
    * A vector of vertices corresponding to the solution, from start to end.
-   * Returns an uninitialized vector if problem was unsolvable or solving timed out.
+   * Returns an uninitialized (empty) vector if problem was unsolvable or
+   * solving timed out.
   */
-  const std::vector<Vertex>& solution() { return solution; }
+  const std::vector<Vertex>& solution() { return solution_; }
 
   /*
    * The total weight of the solution, taking into account edge weights.
    * Returns std::numeric_limits<double>::infinity() if problem was
    * unsolvable or solving timed out.
   */
-  double solutionWeight() { return solutionWeight; }
+  double solutionWeight() { return solutionWeight_; }
 
   /*
    * The total number of states explored while solving.
   */
-  int numStatesExplored() { return numStatesExplored; }
+  int numStatesExplored() { return numStatesExplored_; }
 
   /*
    * The total time spent in seconds by the constructor to run the Bidirectional
@@ -63,14 +65,18 @@ template <typename Vertex> class BiDijkstraSolver {
   double explorationTime() { return timeSpent; }
 
  private:
-  ExtrinsicMinPQ<Vertex> fringe;
-  std::map<Vertex, Vertex> edgeTo;
-  std::map<Vertex, double> distTo;
+  ExtrinsicMinPQ<Vertex> forwardFringe;
+  std::map<Vertex, Vertex> forwardEdgeTo;
+  std::map<Vertex, double> forwardDistTo;
 
-  int outcome;
-  std::vector<Vertex> solution;
-  double solutionWeight;
-  int numStatesExplored;
+  ExtrinsicMinPQ<Vertex> backwardFringe;
+  std::map<Vertex, Vertex> backwardEdgeTo;
+  std::map<Vertex, double> backwardDistTo;
+
+  int outcome_;
+  std::vector<Vertex> solution_;
+  double solutionWeight_;
+  int numStatesExplored_;
   double timeSpent;
 };
 

@@ -5,18 +5,15 @@
 */
 
 #include <assert.h>
-#include <chrono>  // For high_resolution_clock and duration
+#include <vector>
 #include <iostream>
-#include "WeightedEdge.h"
+#include "WeightedDirectedGraph.h"
+#include "BiDijkstraSolver.h"
 
 int main(int argc, char* argv[]) {
   /*
   ////////////////// Testing WeightedEdge. //////////////////
   */
-
-  // Record start time.
-  auto start = std::chrono::high_resolution_clock::now();
-
   WeightedEdge<int> we1 = WeightedEdge<int>(10, 17, -12.3);
   assert(10 == we1.from());
   assert(17 == we1.to());
@@ -27,9 +24,40 @@ int main(int argc, char* argv[]) {
   assert(10 == we2.to());
   assert(-12.3 == we2.weight());
 
-  // Record end time.
-  auto finish = std::chrono::high_resolution_clock::now();
-  std::chrono::duration<double> elapsed = finish - start;
-  double total_time = elapsed.count();
-  std::cout << "Elapsed time: " << total_time << " seconds." << std::endl;
+  /*
+  ////////////////// Testing BidijkstraSolver. //////////////////
+  */
+  WeightedDirectedGraph wdg(7);
+  wdg.addEdge(0, 1, 2);
+  wdg.addEdge(0, 2, 1);
+
+  wdg.addEdge(1, 2, 5);
+  wdg.addEdge(1, 3, 11);
+  wdg.addEdge(1, 4, 3);
+
+  wdg.addEdge(2, 5, 15);
+
+  wdg.addEdge(3, 4, 2);
+
+  wdg.addEdge(4, 2, 1);
+  wdg.addEdge(4, 5, 4);
+  wdg.addEdge(4, 6, 5);
+
+  wdg.addEdge(6, 3, 1);
+  wdg.addEdge(6, 5, 1);
+
+  BiDijkstraSolver<int> solver(wdg, 0, 6, 10);
+
+  std::cout << "Outcome: " << solver.outcome() << std::endl;
+  const std::vector<int>& sol = solver.solution();
+  if (sol.size() > 0) {
+    for (uint i = 0; i < sol.size() - 1; i++) {
+      std::cout << sol[i] << "=>";
+    }
+    std::cout << sol[sol.size() - 1] << std::endl;
+  }
+  std::cout << "Total weight: " << solver.solutionWeight() << std::endl;
+  std::cout << "States explored: " << solver.numStatesExplored() << std::endl;
+  std::cout << "Total time: " << solver.explorationTime();
+  std::cout << "(seconds)" << std::endl;
 }
