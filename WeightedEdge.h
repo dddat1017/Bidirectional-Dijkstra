@@ -9,6 +9,7 @@
 
 /*
  * Utility class that represents a weighted edge between two vertices.
+ * Edge weights cannot be negative.
 */
 template <typename Vertex> class WeightedEdge {
  public:
