@@ -1,7 +1,7 @@
 CFLAGS = -Wall -g -std=c++11
 
-test: test.cpp ExtrinsicMinPQ.h ExtrinsicMinPQ.cpp
-	g++ $(CFLAGS) -o test test.cpp
+test: test_extrinsicminpq.cpp ExtrinsicMinPQ.h ExtrinsicMinPQ.cpp
+	g++ $(CFLAGS) -o test_extrinsicminpq test_extrinsicminpq.cpp
 
 clean:
-	rm test *.o -f *~
+	rm test_extrinsicminpq *.o -f *~
