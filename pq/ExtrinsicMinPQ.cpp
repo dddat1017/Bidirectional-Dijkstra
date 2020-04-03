@@ -4,6 +4,8 @@
  * Copyright 2020 Dat Do
 */
 
+#include "ExtrinsicMinPQ.h"
+
 /*
  * Helper functions to calculate the index position of an
  * item's child (left or right) in the underlying vector.

@@ -8,6 +8,7 @@
 #include <unordered_set>
 #include <limits>  // For numeric_limits
 #include <chrono>  // For high_resolution_clock and duration
+#include "BiDijkstraSolver.h"
 
 template <typename Vertex>
 BiDijkstraSolver<Vertex>::BiDijkstraSolver(
@@ -59,6 +60,8 @@ BiDijkstraSolver<Vertex>::BiDijkstraSolver(
     /* -------------------- Forward path. -------------------- */
     // Once removed from fringe. Shortest path to this vertex is established.
     Vertex* a = forwardFringe.removeSmallest();
+    numStatesExplored_++;
+
     // Check if this vertex has already been visited in the other direction.
     if (visited.insert(*a).second == false) {
       mid = *a;  // Initialize 'mid'.
@@ -67,9 +70,7 @@ BiDijkstraSolver<Vertex>::BiDijkstraSolver(
       break;
     }
 
-    numStatesExplored_++;
     prevDist = forwardDistTo[*a];
-
     // Relax the removed vertex's neighbors.
     for (auto& edge : input.outgoingNeighbors(*a)) {
       Vertex b = (*edge).to();
@@ -100,6 +101,8 @@ BiDijkstraSolver<Vertex>::BiDijkstraSolver(
     /* -------------------- Backward path. -------------------- */
     // Once removed from fringe. Shortest path to this vertex is established.
     Vertex* v = backwardFringe.removeSmallest();
+    numStatesExplored_++;
+
     // Check if this vertex has already been visited in the other direction.
     if (visited.insert(*v).second == false) {
       mid = *v;  // Initialize 'mid'.
@@ -109,9 +112,7 @@ BiDijkstraSolver<Vertex>::BiDijkstraSolver(
       break;
     }
 
-    numStatesExplored_++;
     prevDist = backwardDistTo[*v];
-
     // Relax the removed vertex's neighbors.
     for (auto& edge : input.incomingNeighbors(*v)) {
       Vertex w = (*edge).to();
