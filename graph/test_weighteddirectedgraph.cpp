@@ -8,7 +8,7 @@
 #include <vector>
 #include <iostream>
 #include "WeightedDirectedGraph.h"
-#include "BiDijkstraSolver.h"
+#include "../solver/BiDijkstraSolver.h"
 
 int main(int argc, char* argv[]) {
   /*

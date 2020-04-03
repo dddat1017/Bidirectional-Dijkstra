@@ -9,8 +9,8 @@
 
 #include <map>
 #include <vector>
-#include "Graph.h"
-#include "pq/ExtrinsicMinPQ.h"
+#include "../graph/Graph.h"
+#include "../pq/ExtrinsicMinPQ.h"
 
 /*
  * Class for the Bidirectional Dijkstra's Algorithm solver.
