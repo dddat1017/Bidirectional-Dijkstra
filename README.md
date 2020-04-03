@@ -1,7 +1,7 @@
 # Bidirectional-Dijkstra
 
 ## About
-Implementation of the Bidirectional Dijktra's algorithm to solve shortest path problems on any weighted directed graph.
+Implementation of the Bidirectional Dijktra's algorithm to solve shortest-path problems on any weighted directed graph.
 
 ## Setup
 Read over `graph/Graph.h` to understand the requirements for your graph. Derive a subclass from `Graph` and override the pure virtual functions.
