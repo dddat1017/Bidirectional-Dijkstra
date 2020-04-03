@@ -4,19 +4,29 @@
  * Copyright 2020 Dat Do
 */
 
+#ifndef WEIGHTEDDIRECTEDGRAPH_H_
+#define WEIGHTEDDIRECTEDGRAPH_H_
+
 #include <memory>
 #include <vector>
 #include "Graph.h"
 #include "WeightedEdge.h"
 
-#ifndef WEIGHTEDDIRECTEDGRAPH_H_
-#define WEIGHTEDDIRECTEDGRAPH_H_
+using std::unique_ptr;
+using std::vector;
 
+/* 
+ * Example class representing a weighted directed graph.
+ * Each vertex is of primitive type 'int'.
+ * 
+ * Inherits from 'Graph' abstract class (interface) and
+ * overrides the pure virtual functions.
+*/
 class WeightedDirectedGraph: public Graph<int> {
  public:
   /*
    * Ctor.
-   * Takes in number of vertices specified and populate the
+   * Takes in specified number of vertices and populates the
    * underlying vectors accordingly.
   */
   explicit WeightedDirectedGraph(const int& V) {
@@ -31,11 +41,17 @@ class WeightedDirectedGraph: public Graph<int> {
   */
   ~WeightedDirectedGraph() { }
 
+  /*
+   * Overriding pure virtual function.
+  */
   const vector<unique_ptr<WeightedEdge<int>>>& outgoingNeighbors(
                                             const int& v) const {
     return outgoing[v];
   }
 
+  /*
+   * Overriding pure virtual function.
+  */
   const vector<unique_ptr<WeightedEdge<int>>>& incomingNeighbors(
                                             const int& v) const {
     return incoming[v];
