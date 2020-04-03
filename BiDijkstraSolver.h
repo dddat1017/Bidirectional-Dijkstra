@@ -23,11 +23,13 @@ template <typename Vertex> class BiDijkstraSolver {
   /*
    * Ctor.
    * Immediately solves and stores the result of running the Bidirectional
-   * Dijkstra's Algorithm, computing everything necessary for all other methods
+   * Dijkstra's Algorithm, computing everything necessary for all other functions
    * to return their results in constant time. The timeout is given in seconds.
+   * 
+   * Read "Graph.h" for further documentation and requirements.
   */
   BiDijkstraSolver(const Graph<Vertex>& input, Vertex start,
-                        Vertex end, const double& timeout);
+                          Vertex end, const double& timeout);
 
   /*
    * Dtor.
@@ -65,14 +67,23 @@ template <typename Vertex> class BiDijkstraSolver {
   double explorationTime() { return timeSpent; }
 
  private:
+  /* 
+   * Data structures to keep track of the forward path.
+  */
   ExtrinsicMinPQ<Vertex> forwardFringe;
   std::map<Vertex, Vertex> forwardEdgeTo;
   std::map<Vertex, double> forwardDistTo;
 
+  /* 
+   * Data structures to keep track of the backward path.
+  */
   ExtrinsicMinPQ<Vertex> backwardFringe;
   std::map<Vertex, Vertex> backwardEdgeTo;
   std::map<Vertex, double> backwardDistTo;
 
+  /*
+   * Results.
+  */
   int outcome_;
   std::vector<Vertex> solution_;
   double solutionWeight_;
