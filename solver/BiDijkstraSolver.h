@@ -26,7 +26,7 @@ template <typename Vertex> class BiDijkstraSolver {
    * Dijkstra's Algorithm, computing everything necessary for all other functions
    * to return their results in constant time. The timeout is given in seconds.
    * 
-   * Read "Graph.h" for further documentation on requirements for 'input'.
+   * Read "graph/Graph.h" for further documentation on requirements for 'input'.
   */
   BiDijkstraSolver(const Graph<Vertex>& input, Vertex start,
                           Vertex end, const double& timeout);

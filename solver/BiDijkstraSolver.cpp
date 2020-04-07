@@ -45,7 +45,7 @@ BiDijkstraSolver<Vertex>::BiDijkstraSolver(
   forwardEdgeTo[start] = start;
   forwardDistTo[start] = 0.0;
 
-  // Add end vertex to the forward-fringe/edgeTo/DistTo data structures.
+  // Add end vertex to the backward-fringe/edgeTo/DistTo data structures.
   backwardFringe.add(end, 0.0);
   backwardEdgeTo[end] = end;
   backwardDistTo[end] = 0.0;
@@ -55,7 +55,7 @@ BiDijkstraSolver<Vertex>::BiDijkstraSolver(
   double dist;  // Distance to the vertex being relaxed.
   double totalTimeSoFar;
 
-  // Both fringe's must be non-empty while examining/relaxing each vertex.
+  // Both fringe must be non-empty while examining/relaxing each vertex.
   while (!forwardFringe.isEmpty() && !backwardFringe.isEmpty()) {
     /* -------------------- Forward path. -------------------- */
     // Once removed from fringe. Shortest path to this vertex is established.
